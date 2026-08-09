@@ -1,26 +1,30 @@
 @import "tailwindcss";
+@import "@heroui/styles";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    /* Page defaults (Cream Vanilla background, Dark Crimson text) */
+    --background: #efe6dd;
+    --foreground: #9a0002;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    /* HeroUI Global Theme Variables (RGB values) */
+    --heroui-background: 239 230 221;
+    --heroui-foreground: 154 0 2;
+
+    /* Primary state (Buttons, Tabs, Chips, Active Links) */
+    --heroui-primary: 154 0 2;
+    --heroui-primary-500: 154 0 2;
+    --heroui-primary-foreground: 239 230 221;
+
+    /* Content/Card backgrounds (Slightly darker cream shades for depth) */
+    --heroui-content1: 230 219 208;
+    --heroui-content2: 220 207 194;
+  }
+
+  body {
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+  }
 }
