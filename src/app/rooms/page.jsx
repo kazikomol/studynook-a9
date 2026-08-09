@@ -1,11 +1,10 @@
-
 import RoomCard from '@/components/RoomCard';
 import { allRooms } from '@/lib/rooms/data';
 import React from 'react';
 
 const AllRoomsPage = async () => {
-   const rooms = await allRooms();
-    
+    const rooms = await allRooms();
+
     return (
         <section className="relative min-h-screen overflow-hidden px-6 py-16 ">
             <div className='text-center mb-5'>
@@ -18,7 +17,7 @@ const AllRoomsPage = async () => {
             </div>
 
             <div className="max-w-7xl py-5 mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {rooms.map((room) => (
+                {rooms?.map((room) => (
                     <RoomCard key={room._id} room={room} />
                 ))}
             </div>

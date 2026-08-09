@@ -100,7 +100,7 @@ const RoomCard = ({ room }) => {
                     </div>
                     <Link
                         
-                        href={`/all-rooms/${_id}`}
+                        href={`/rooms/${_id}`}
                         className="flex items-center gap-2 rounded-xl bg-[#8b2619] px-4 py-2 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#6e1e13]"
                     >
                         View Details

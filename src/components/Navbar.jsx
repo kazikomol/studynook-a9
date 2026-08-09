@@ -29,7 +29,7 @@ const Navbar = () => {
             <Link href="/" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">
               Home
             </Link>
-            <Link href="/all-rooms" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">
+            <Link href="/rooms" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">
               All Rooms
             </Link>
             {/* <Link href="/add-rooms" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Add Rooms</Link>
