@@ -3,28 +3,17 @@
 
 
 
-@layer base {
+
   :root {
     /* Page defaults (Cream Vanilla background, Dark Crimson text) */
     --background: #efe6dd;
     --foreground: #9a0002;
 
-    /* HeroUI Global Theme Variables (RGB values) */
-    --heroui-background: 239 230 221;
-    --heroui-foreground: 154 0 2;
-
-    /* Primary state (Buttons, Tabs, Chips, Active Links) */
-    --heroui-primary: 154 0 2;
-    --heroui-primary-500: 154 0 2;
-    --heroui-primary-foreground: 239 230 221;
-
-    /* Content/Card backgrounds (Slightly darker cream shades for depth) */
-    --heroui-content1: 230 219 208;
-    --heroui-content2: 220 207 194;
+  }
+     body {
+    background-color: var(--background) ;
+    color: var(--foreground) ;
   }
 
-  body {
-    background-color: var(--background) !important;
-    color: var(--foreground) !important;
-  }
-}
+
+

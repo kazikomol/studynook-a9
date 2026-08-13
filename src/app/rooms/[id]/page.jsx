@@ -1,3 +1,4 @@
+import { Card } from '@heroui/react';
 import { CoffeeIcon, Monitor } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
@@ -39,11 +40,10 @@ const RoomsDetailsPage = async ({ params }) => {
     const isOwner = false;
 
     return (
-        <section className="relative min-h-screen overflow-hidden bg-slate-50 px-6 py-16 text-slate-900">
-            <div className="absolute -left-40 -top-40 h-128 w-lg rounded-full border border-slate-200/60" />
-            <div className="absolute -bottom-40 -right-40 h-128 w-lg rounded-full border border-slate-200/60" />
+        <Card className="relative min-h-screen   mx-auto my-10 overflow-hidden px-6 py-16 bg-slate-50">
+            
 
-            <div className="relative z-10 mx-auto max-w-6xl">
+            <div className="relative z-10 mx-auto max-w-6xl w-full">
 
                 {/* Eyebrow */}
                 <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold tracking-wide text-[#8b2619] shadow-sm">
@@ -166,7 +166,7 @@ const RoomsDetailsPage = async ({ params }) => {
 
                 </div>
             </div>
-        </section>
+        </Card>
     );
 };
 
