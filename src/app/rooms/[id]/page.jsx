@@ -1,5 +1,7 @@
+import { auth } from '@/lib/auth';
 import { Card } from '@heroui/react';
 import { CoffeeIcon, Monitor } from 'lucide-react';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 import { BsProjector } from 'react-icons/bs';
@@ -15,15 +17,25 @@ const amenityIcons = {
     'Coffee Machine': <CoffeeIcon/>,
 };
 
-const details = async (id) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rooms/${id}`);
+const details = async (id,token) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rooms/${id}`,{
+        headers: {
+            authorization: `Bearer ${token}`||""
+        }
+    })
     const data = await res.json();
     return data || {};
 };
 
 const RoomsDetailsPage = async ({ params }) => {
     const { id } = await params;
-    const RoomDetails = await details(id);
+    const {token} = await auth.api.getToken({
+        headers : await headers(),
+
+    });
+
+    console.log(token);
+    const RoomDetails = await details(id,token);
 
     const {
         _id,
@@ -40,6 +52,7 @@ const RoomsDetailsPage = async ({ params }) => {
     const isOwner = false;
 
     return (
+        
         <Card className="relative min-h-screen   mx-auto my-10 overflow-hidden px-6 py-16 bg-slate-50">
             
 

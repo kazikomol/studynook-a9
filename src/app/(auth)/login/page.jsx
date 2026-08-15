@@ -21,7 +21,9 @@ const LoginPage = () => {
             
                
         })
-        console.log({data, error}) 
+
+        const { data:tokenData } = await authClient.token()
+        console.log(tokenData); 
         if(data) {
             toast.success("LogIN successfully");
             redirect("/");

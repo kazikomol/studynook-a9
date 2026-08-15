@@ -1,12 +1,21 @@
 import RoomCard from '@/components/RoomCard';
+import SearchBar from '@/components/SearchBar';
 import { allRooms } from '@/lib/rooms/data';
+import { Button } from '@heroui/react';
+import { Filter, Search } from 'lucide-react';
 import React from 'react';
 
-const AllRoomsPage = async () => {
+const AllRoomsPage = async ({searchParams}) => {
     const rooms = await allRooms();
+    // const sParams = await searchParams;
+    // // console.log(sParams);
+
+
+    // const rooms = await fetchCourses(sParams?.searchTerm || "");
 
     return (
         <section className="relative min-h-screen overflow-hidden px-6 py-16 ">
+            
             <div className='text-center mb-5'>
                 <h1 className="font-black leading-tight text-4xl sm:text-5xl">
                     All Study Rooms
