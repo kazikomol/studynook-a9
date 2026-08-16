@@ -53,7 +53,7 @@ const Navbar = () => {
       <Link href="/my-listings" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">
         My listing
       </Link>
-      <Link href="/dashboard" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">
+      <Link href="/my-bookings" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">
         My Bookings
       </Link>
     </>
@@ -78,30 +78,30 @@ const Navbar = () => {
                 <Image
                   width={40}
                   height={40}
-                  src={session?.user?.image}
+                  src={session?.user?.image || "https://avatar.iran.liara.run/public"}
                   alt="avatar"
                   className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-600/10"
                 />
                 
               </button>
 
-              <div className="absolute right-0 top-12 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="absolute right-0 top-10 w-56 bg-white border border-slate-200 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="px-4 py-3 border-b border-slate-100">
                   <p className="font-bold text-sm">Welcome back!</p>
                   <p className="text-xs truncate text-slate-500">{session?.user?.email}</p>
                 </div>
 
-                <Link href="/dashboard" className="px-4 py-2 text-sm hover:bg-muted flex items-center gap-3 transition-colors">
-                  <LayoutDashboard className="w-4 h-4" /> Dashboard
+                <Link href="/my-bookings" className="px-4 py-2 text-sm hover:bg-slate-50 flex items-center gap-3 transition-colors">
+                  <LayoutDashboard className="w-4 h-4" /> My-bookings
                 </Link>
 
-                <Link href="/settings" className="px-4 py-2 text-sm hover:bg-muted flex items-center gap-3 transition-colors">
-                  <User className="w-4 h-4" /> Settings
+                <Link href="/my-listings" className="px-4 py-2 text-sm hover:bg-slate-50 flex items-center gap-3 transition-colors">
+                  <User className="w-4 h-4" /> My-Listings
                 </Link>
 
-                <Button onClick={handleSignOut} className="px-4 py-2 text-sm hover:bg-red-50 flex items-center gap-3 transition-colors text-left">
+                <button onClick={handleSignOut} className="w-full text-left px-4 py-2 text-sm hover:bg-red-50 flex items-center gap-3 transition-colors text-red-600">
                   <LogOut className="w-4 h-4" /> Log Out
-                </Button>
+                </button>
               </div>
             </div>
            
@@ -116,7 +116,7 @@ const Navbar = () => {
       </div>
 
     
-     
+      
     </nav>
   );
 };

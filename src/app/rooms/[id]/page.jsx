@@ -1,6 +1,7 @@
+import EnrollmentButton from '@/components/EnrollmentButton';
 import { auth } from '@/lib/auth';
 import { Card } from '@heroui/react';
-import { CoffeeIcon, Monitor } from 'lucide-react';
+import { CoffeeIcon, Monitor, User } from 'lucide-react';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
@@ -9,13 +10,6 @@ import { FaCalendar, FaEdit, FaTrash, FaWifi } from 'react-icons/fa';
 import { FiClock, FiLayers, FiUsers } from 'react-icons/fi';
 import { GiSoundOff } from 'react-icons/gi';
 
-const amenityIcons = {
-    'High-Speed Wi-Fi': <FaWifi/>,
-    '4K Projector':  <BsProjector />, 
-    'Whiteboard': <Monitor/>,
-    'Soundproof': <GiSoundOff/> ,
-    'Coffee Machine': <CoffeeIcon/>,
-};
 
 const details = async (id,token) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rooms/${id}`,{
@@ -40,6 +34,7 @@ const RoomsDetailsPage = async ({ params }) => {
     const {
         _id,
         roomName,
+        enrollCount,
         description,
         imageUrl,
         floor,
@@ -50,6 +45,18 @@ const RoomsDetailsPage = async ({ params }) => {
     } = RoomDetails;
 
     const isOwner = false;
+    
+    const amenityIcons = {
+    'High-Speed Wi-Fi': <FaWifi/>,
+    '4K Projector':  <BsProjector />, 
+    'Whiteboard': <Monitor/>,
+    'Soundproof': <GiSoundOff/> ,
+    'Coffee Machine': <CoffeeIcon/>,
+    
+};
+
+    
+
 
     return (
         
@@ -99,7 +106,7 @@ const RoomsDetailsPage = async ({ params }) => {
                             <div className="mb-6 flex flex-wrap gap-4">
                                 <div className="flex items-center gap-2 text-sm text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg">
                                     <FiUsers className="text-[#8b2619]" />
-                                    <span>{capacity} people</span>
+                                    <span>{enrollCount || 0} people</span>
                                 </div>
                                 <div className="flex items-center gap-2 text-sm text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg">
                                     <FiLayers className="text-[#8b2619]" />
@@ -134,7 +141,7 @@ const RoomsDetailsPage = async ({ params }) => {
                                             <span className="text-[#8b2619]">
                                                 {amenityIcons[amenity] ?? '✦'}
                                             </span>
-                                            {amenity}
+                                            {amenity}{}
                                         </div>
                                     ))}
                                 </div>
@@ -158,9 +165,7 @@ const RoomsDetailsPage = async ({ params }) => {
                             <div className="mb-5 h-px w-full bg-slate-100" />
 
                             <div>
-                                <label htmlFor="my_modal_9" className="flex justify-center w-full rounded-xl bg-[#8b2619] px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-[#6e1e13] cursor-pointer shadow-sm">
-                                    <span className='flex items-center justify-center gap-3'><FaCalendar /> Book Now</span>
-                                </label>
+                            <EnrollmentButton room={RoomDetails} />
                             </div>
 
                             {isOwner && (

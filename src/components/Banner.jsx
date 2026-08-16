@@ -52,6 +52,26 @@ const Banner = () => {
              />
              <div className="absolute inset-0 " />
            </div></SwiperSlide>
+              <SwiperSlide>  <div className="relative w-full h-[300px] md:h-[380px] rounded-2xl overflow-hidden">
+             <Image
+               src="https://plus.unsplash.com/premium_photo-1677567996070-68fa4181775a?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+               fill
+               priority
+               alt='banner'
+               className="object-cover"
+             />
+             <div className="absolute inset-0 " />
+           </div></SwiperSlide>
+              <SwiperSlide>  <div className="relative w-full h-[300px] md:h-[380px] rounded-2xl overflow-hidden">
+             <Image
+               src="https://images.unsplash.com/photo-1568667256549-094345857637?q=80&w=1915&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+               fill
+               priority
+               alt='banner'
+               className="object-cover"
+             />
+             <div className="absolute inset-0 " />
+           </div></SwiperSlide>
      
       </Swiper>
     </div>

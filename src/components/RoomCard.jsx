@@ -11,6 +11,7 @@ const RoomCard = ({ room }) => {
     const {
         _id,
         roomName,
+        
         description,
         imageUrl,
         floor,
@@ -61,10 +62,7 @@ const RoomCard = ({ room }) => {
 
                 {/* Meta row */}
                 <div className="mb-4 flex items-center gap-4">
-                    <div className="flex items-center gap-1.5 text-xs text-[#523d31] bg-[#f4ebe1] px-2.5 py-1 rounded-md">
-                        <FiUsers className="text-[#8b2619]" />
-                        {capacity} people
-                    </div>
+                    
                     <div className="flex items-center gap-1.5 text-xs text-[#523d31] bg-[#f4ebe1] px-2.5 py-1 rounded-md">
                         <FiClock className="text-[#8b2619]" />
                         Hourly
