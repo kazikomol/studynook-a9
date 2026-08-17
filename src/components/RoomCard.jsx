@@ -13,7 +13,7 @@ const RoomCard = ({ room }) => {
         roomName,
         
         description,
-        imageUrl,
+        image,
         floor,
         capacity,
         hourlyRate,
@@ -28,9 +28,9 @@ const RoomCard = ({ room }) => {
 
             {/* Image */}
             <div className="relative h-44 w-full overflow-hidden bg-[#ebdccb]">
-                {imageUrl ? (
+                {image? (
                     <Image
-                        src={imageUrl}
+                        src={image}
                         alt={roomName || 'Room image'}
                         fill
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

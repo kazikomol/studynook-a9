@@ -1,6 +1,8 @@
+import DelelteRooms from '@/components/DelelteRooms';
+import EditRooms from '@/components/EditRooms';
 import EnrollmentButton from '@/components/EnrollmentButton';
 import { auth } from '@/lib/auth';
-import { Card } from '@heroui/react';
+import { Button, Card } from '@heroui/react';
 import { CoffeeIcon, Monitor, User } from 'lucide-react';
 import { headers } from 'next/headers';
 import Image from 'next/image';
@@ -23,9 +25,15 @@ const details = async (id,token) => {
 
 const RoomsDetailsPage = async ({ params }) => {
     const { id } = await params;
-    const {token} = await auth.api.getToken({
-        headers : await headers(),
+    const reqHeaders = await headers();
 
+    const {token} = await auth.api.getToken({
+        headers : reqHeaders,
+
+    });
+
+    const session = await auth.api.getSession({
+        headers: reqHeaders,
     });
 
     console.log(token);
@@ -36,7 +44,7 @@ const RoomsDetailsPage = async ({ params }) => {
         roomName,
         enrollCount,
         description,
-        imageUrl,
+        image,
         floor,
         capacity,
         hourlyRate,
@@ -44,7 +52,7 @@ const RoomsDetailsPage = async ({ params }) => {
         amenities = [],
     } = RoomDetails;
 
-    const isOwner = false;
+    const isOwner = Boolean(session?.user?.email && ownerEmail && session.user.email === ownerEmail);
     
     const amenityIcons = {
     'High-Speed Wi-Fi': <FaWifi/>,
@@ -78,9 +86,9 @@ const RoomsDetailsPage = async ({ params }) => {
 
                         {/* Image */}
                         <div className="relative h-72 w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm sm:h-96">
-                            {imageUrl ? (
+                            {image ? (
                                 <Image
-                                    src={imageUrl}
+                                    src={image}
                                     alt={roomName || 'Room image'}
                                     fill
                                     className="h-full w-full object-cover"
@@ -170,12 +178,8 @@ const RoomsDetailsPage = async ({ params }) => {
 
                             {isOwner && (
                                 <div className="flex justify-between gap-2 mt-3">
-                                    <label htmlFor="my_modal_7" className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-100 border border-slate-300 cursor-pointer">
-                                        <span className='flex items-center justify-center gap-3'><FaEdit /> Edit </span>
-                                    </label>
-                                    <label htmlFor="my_modal_8" className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-red-600 transition-all duration-300 hover:bg-red-50 border border-red-200 cursor-pointer">
-                                        <span className='flex items-center justify-center gap-3'><FaTrash /> Delete </span>
-                                    </label>
+                                    <EditRooms room={RoomDetails} token={token} />
+                                    <DelelteRooms roomId={_id} token={token} />
                                 </div>
                             )}
 

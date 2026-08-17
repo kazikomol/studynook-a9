@@ -4,18 +4,18 @@ const Details = () => {
     const featureItems = [
         {
             icon: <FaUser/>,
-            title: 'Expert Instructors',
-            desc: 'Learn from industry professionals with real-world experience.',
+            title: 'User Freindly',
+            desc: 'Everybody can smoothly book there own rooms',
         },
         {
             icon: <FaAward/>,
-            title: 'Verified Certificates',
-            desc: 'Earn certificates that are recognized by top companies worldwide.',
+            title: 'Verified by officials',
+            desc: 'Every rooms are monitored by offcials',
         },
         {
             icon: <FaPlay/>,
-            title: 'Lifetime Access',
-            desc: 'Learn at your own pace with lifetime access to all your courses.',
+            title: 'ALL time access',
+            desc: 'Student can access this website anytime.',
         },
     ]
     return (

@@ -128,7 +128,7 @@ const EnrollmentButton = ({ room }) => {
       name:session?.user?.name,
       email:session?.user?.email,
       title:room?.roomName,
-      image:room?.imageUrl,
+      image:room?.image,
 
     }
 

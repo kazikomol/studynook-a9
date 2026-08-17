@@ -37,12 +37,12 @@ const RegisterPage = () => {
         }
     };
 
-    // const handleGoogleSignIn = async () => {
-    //     await authClient.signIn.social({
-    //         provider: "google",
-    //         callbackURL: "/",
-    //     });
-    // };
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/",
+        });
+    };
 
     return (
         <div className="min-h-[80vh] flex flex-col py-12">
@@ -141,7 +141,7 @@ const RegisterPage = () => {
                                 <div className="space-y-4">
                                     <Button
                                         type="button"
-                                        // onClick={handleGoogleSignIn}
+                                        onClick={handleGoogleSignIn}
                                         variant="bordered"
                                         className="w-full h-12 font-bold rounded-2xl border-slate-200 hover:bg-slate-50 transition-colors gap-3"
                                     >

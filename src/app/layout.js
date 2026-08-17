@@ -31,7 +31,11 @@ export default function RootLayout({ children }) {
       <body className=" min-h-full mx-auto flex flex-col">
         <Navbar />
         <ThemeProvider >
-          {children}
+          <div className="container mx-auto">
+            {children}
+
+          </div>
+          
         </ThemeProvider>
         <Toaster/>
         <Footer />

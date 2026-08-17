@@ -2,23 +2,22 @@
 import { Button } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 
-// import required modules
+
 import { Navigation } from 'swiper/modules';
 
 const Banner = () => {
     return (
         <div className="relative w-full min-h-[400px] rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-6 items-center p-6 md:p-10">
            
-           {/* Left Side: Text and Button */}
+          
            <div className="relative z-10 flex flex-col items-start justify-center gap-3 text-left max-w-3xl">
              <h2 className='text-4xl md:text-5xl font-bold text-[#9a0002]'>
                Find Your Perfect<br></br> Study Room
@@ -29,7 +28,7 @@ const Banner = () => {
             <Link href={'/room'}><Button className={"bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 hover:scale-[1.02] active:scale-95 transition-all rounded-xl border-none hover:bg-white/10 backdrop-blur-md"}>EXPLORE</Button></Link>
            </div>
 
-           {/* Right Side: Image */}
+          
            <div className="w-full min-w-0">
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         <SwiperSlide>  <div className="relative w-full h-[300px] md:h-[380px] rounded-2xl overflow-hidden">

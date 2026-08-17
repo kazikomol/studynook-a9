@@ -11,7 +11,7 @@ const NotFound = () => {
         <div className="p-12 text-center bg-slate-50 border border-slate-200 rounded-2xl">
             <p className="mb-4 text-slate-600 font-medium text-lg">No courses yet</p>
 
-            <Link href="/courses">
+            <Link href="/rooms">
                 <Button color="primary" className="font-medium">
                     Browse Courses
                 </Button>
@@ -45,7 +45,7 @@ const MyBookingPage = async () => {
    
 
     return (
-        <div className="  px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="  px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mb-80">
             <div className="flex flex-col md:flex-row gap-8 items-start justify-center">
 
                 {/* Enrollments Container */}
