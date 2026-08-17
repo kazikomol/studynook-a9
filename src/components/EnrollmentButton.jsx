@@ -326,7 +326,7 @@ const EnrollmentButton = ({ room }) => {
                         type="submit"
                         isDisabled={Number(timeEnd) <= Number(timeStart)}
                       >
-                        Confirm Booking
+                        Confirm booking
                       </Button>
                     </Modal.Footer>
                   </form>
