@@ -100,49 +100,47 @@ const EnrollmentButton = ({ room }) => {
         }
       );
 
-      const {data,error} = await res.json();
+      const responseData = await res.json();
 
-      if (res.ok ) {
+      if (res.ok) {
         toast.success("Room booked successfully!");
         setIsOpen(false);
       } else {
-        toast.error(`Booking Error: ${errorMessage}`);
+        toast.error(`Booking Error: ${responseData?.message || "Failed to book"}`);
       }
-        
     } catch (error) {
       console.error("Booking failed:", error);
+      toast.error("Something went wrong with the booking.");
     }
-
-    
-
   };
 
-  const {data:session} = useSession()
-  const handleBooking = async()=>{
-
-    const {data:jwtData} = await authClient.token();
+  const { data: session } = useSession();
+  const handleBooking = async () => {
+    const { data: jwtData } = await authClient.token();
     const token = jwtData?.token;
-    
+
     const updatedData = {
       id: session?.user?.id,
-      name:session?.user?.name,
-      email:session?.user?.email,
-      title:room?.roomName,
-      image:room?.image,
+      name: session?.user?.name,
+      email: session?.user?.email,
+      title: room?.roomName,
+      image: room?.image,
+    };
 
-    }
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/enrollment/${room?._id}`,{
-      method:"PATCH",
-      headers:{
-        "content-type": "application/json",
-        authorization: `Bearer ${token}`
-      },
-      body:JSON.stringify(updatedData)
-    })
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/enrollment/${room?._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedData),
+      }
+    );
 
     const data = await res.json();
-  }
+  };
 
   return (
     <>
@@ -231,75 +229,70 @@ const EnrollmentButton = ({ room }) => {
                     </DatePicker>
 
                     <div className="flex items-center gap-2 bg-white">
-                    {/* start */}
-                    <Select
-                      isRequired
-                      name="start"
-                      value={timeStart}
-                      onChange={setTimeStart}
-                      className="w-full bg-white"
-                    >
-                      <Label>Start</Label>
+                      {/* start */}
+                      <Select
+                        isRequired
+                        name="start"
+                        selectedKey={timeStart}
+                        onSelectionChange={(key) => setTimeStart(String(key))}
+                        className="w-full bg-white"
+                      >
+                        <Label>Start</Label>
 
-                      <Select.Trigger className="bg-white border-2 border-slate-400">
-                        <Select.Value />
-                        <Select.Indicator />
-                      </Select.Trigger>
+                        <Select.Trigger className="bg-white border-2 border-slate-400">
+                          <Select.Value />
+                          <Select.Indicator />
+                        </Select.Trigger>
 
-                      <Select.Popover className="bg-white">
-                        <ListBox >
-                          {startTime.map((time) => (
-                            <ListBox.Item
-                              id={time.value}
-                              key={time.value}
-                              textValue={time.label}
-                            >
-                              {time.label}
-                              
-                              <ListBox.ItemIndicator />
-                            </ListBox.Item>
-                          ))}
-                        </ListBox>
-                      </Select.Popover>
-                    </Select>
+                        <Select.Popover className="bg-white">
+                          <ListBox>
+                            {startTime.map((time) => (
+                              <ListBox.Item
+                                id={time.value}
+                                key={time.value}
+                                textValue={time.label}
+                              >
+                                {time.label}
 
-                    {/* end */}
-                    <Select
-                      isRequired
-                      name="end"
-                      value={timeEnd}
-                      onChange={setTimeEnd}
-                      isInvalid={Number(timeEnd) <= Number(timeStart)}
-                      errorMessage={
-                        Number(timeEnd) <= Number(timeStart)
-                          ? "End time must be greater than start time"
-                          : ""
-                      }
-                      className="w-full"
-                    >
-                      <Label>End</Label>
+                                <ListBox.ItemIndicator />
+                              </ListBox.Item>
+                            ))}
+                          </ListBox>
+                        </Select.Popover>
+                      </Select>
 
-                      <Select.Trigger className="bg-white border-2 border-slate-400">
-                        <Select.Value />
-                        <Select.Indicator />
-                      </Select.Trigger>
+                      {/* end */}
+                      <Select
+                        isRequired
+                        name="end"
+                        selectedKey={timeEnd}
+                        onSelectionChange={(key) => setTimeEnd(String(key))}
+                        isInvalid={Number(timeEnd) <= Number(timeStart)}
+                        className="w-full"
+                      >
+                        <Label>End</Label>
 
-                      <Select.Popover className="bg-white">
-                        <ListBox>
-                          {endTime.map((time) => (
-                            <ListBox.Item
-                              id={time.value}
-                              key={time.value}
-                              textValue={time.label}
-                            >
-                              {time.label}
-                              <ListBox.ItemIndicator />
-                            </ListBox.Item>
-                          ))}
-                        </ListBox>
-                      </Select.Popover>
-                    </Select>
-                  </div>
+                        <Select.Trigger className="bg-white border-2 border-slate-400">
+                          <Select.Value />
+                          <Select.Indicator />
+                        </Select.Trigger>
+
+                        <Select.Popover className="bg-white">
+                          <ListBox>
+                            {endTime.map((time) => (
+                              <ListBox.Item
+                                id={time.value}
+                                key={time.value}
+                                textValue={time.label}
+                              >
+                                {time.label}
+                                <ListBox.ItemIndicator />
+                              </ListBox.Item>
+                            ))}
+                          </ListBox>
+                        </Select.Popover>
+                      </Select>
+                    </div>
                     {Number(timeEnd) <= Number(timeStart) && (
                       <p className="text-sm text-danger font-medium flex items-center gap-1 bg-white">
                         <BiInfoCircle /> End time must be greater than start
@@ -331,7 +324,6 @@ const EnrollmentButton = ({ room }) => {
                       </Button>
                       <Button
                         type="submit"
-                        onPress={handleBooking}
                         isDisabled={Number(timeEnd) <= Number(timeStart)}
                       >
                         Confirm Booking
